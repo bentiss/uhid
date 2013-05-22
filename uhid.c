@@ -28,6 +28,11 @@
 #define UHID_NAME	"uhid"
 #define UHID_BUFSIZE	512
 
+#ifndef hid_warn
+#define hid_warn(hid, fmt, arg...)					\
+		dev_warn(&(hid)->dev, fmt, ##arg)
+#endif
+
 struct uhid_device {
 	struct mutex devlock;
 	bool running;
